@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacto - Clínica San Pablo</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    
+    <style>
+        /* ===== MISMO CSS QUE INDEX ===== */
+        :root {
+            --primary: #0A3A5A;
+            --primary-light: #1A5A7A;
+            --primary-dark: #062235;
+            --secondary: #2E8B57;
+            --secondary-light: #3CAF7A;
+            --accent: #F5A623;
+            --white: #FFFFFF;
+            --gray-light: #F5F7FA;
+            --gray: #E2E8F0;
+            --gray-dark: #718096;
+            --text: #2D3748;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --transition: 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.7;
+        }
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+        }
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: var(--secondary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(46, 139, 87, 0.4);
+        }
+
+        header {
+            background: var(--white);
+            padding: 12px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo svg { display: block; }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text);
+            transition: var(--transition);
+            position: relative;
+            font-size: 1rem;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background: var(--secondary);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+        .nav-links a:hover { color: var(--secondary); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a.active { color: var(--secondary); }
+        .nav-links a.active::after { width: 100%; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        section { padding: 80px 0; }
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title {
+            font-size: 2.6rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .section-title span { color: var(--secondary); }
+        .section-subtitle {
+            color: var(--gray-dark);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section-divider {
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ================================================================
+           CONTACTO
+           ================================================================ */
+        .contacto-wrapper {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .contacto-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+        .form-group input,
+        .form-group textarea {
+            padding: 14px 18px;
+            border: 2px solid var(--gray);
+            border-radius: 10px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--gray-light);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(46, 139, 87, 0.12);
+            background: var(--white);
+        }
+        .form-group textarea { min-height: 130px; resize: vertical; }
+
+        .contacto-info {
+            background: var(--primary);
+            color: var(--white);
+            padding: 35px 30px;
+            border-radius: var(--radius);
+        }
+        .contacto-info h3 {
+            color: var(--white);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+        .contacto-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        .contacto-info .info-item .info-icon { font-size: 1.4rem; }
+
+        .mensaje-confirmacion {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 14px;
+            border-radius: 10px;
+        }
+
+        /* ===== MAPA (placeholder) ===== */
+        .mapa-placeholder {
+            margin-top: 50px;
+            background: var(--gray-light);
+            border-radius: var(--radius);
+            padding: 60px 20px;
+            text-align: center;
+            border: 2px dashed var(--gray);
+        }
+        .mapa-placeholder .mapa-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 16px;
+        }
+        .mapa-placeholder h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .mapa-placeholder p {
+            color: var(--gray-dark);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--primary-dark);
+            color: var(--white);
+        }
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            padding: 50px 24px 30px;
+        }
+        .footer-logo p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+            margin-top: 10px;
+            max-width: 300px;
+        }
+        .footer-links h4,
+        .footer-social h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .footer-links ul li { margin-bottom: 10px; }
+        .footer-links ul li a {
+            opacity: 0.8;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+        .footer-links ul li a:hover {
+            opacity: 1;
+            color: var(--secondary-light);
+        }
+        .social-icons {
+            display: flex;
+            gap: 16px;
+            font-size: 2rem;
+        }
+        .social-icons a {
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+        .social-icons a:hover {
+            opacity: 1;
+            transform: scale(1.15);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding: 18px 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .contacto-wrapper { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: 1fr 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: var(--white);
+                position: absolute;
+                top: 72px;
+                right: 16px;
+                padding: 24px 32px;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow-lg);
+                width: 220px;
+                gap: 14px;
+                border: 1px solid var(--gray);
+            }
+            .nav-links.active { display: flex; }
+            .hamburger { display: flex; }
+
+            .section-title { font-size: 2rem; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .social-icons { justify-content: center; }
+            .footer-logo p { margin: 10px auto 0; }
+            .contacto-info .info-item { justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .btn { padding: 12px 24px; font-size: 0.9rem; }
+            .contacto-info { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================================================================ -->
+    <!-- HEADER                                                           -->
+    <!-- ================================================================ -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <!-- SESIÓN 7: LOGO EN SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="180" height="60">
+                    <rect width="300" height="100" rx="12" fill="#0A3A5A"/>
+                    <rect x="15" y="25" width="50" height="50" rx="8" fill="#2E8B57"/>
+                    <rect x="30" y="35" width="20" height="30" rx="3" fill="white"/>
+                    <rect x="25" y="40" width="30" height="20" rx="3" fill="white"/>
+                    <text x="80" y="45" fill="white" font-family="Arial" font-size="28" font-weight="bold">San Pablo</text>
+                    <text x="80" y="68" fill="#2E8B57" font-family="Arial" font-size="16" font-weight="bold">Clínica</text>
+                    <text x="80" y="88" fill="rgba(255,255,255,0.6)" font-family="Arial" font-size="11">SISTEMA DE RECURSOS HUMANOS</text>
+                </svg>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="empleados.html">Empleados</a></li>
+                    <li><a href="asistencia.html">Asistencia</a></li>
+                    <li><a href="nomina.html">Nómina</a></li>
+                    <li><a href="contacto.html" class="active">Contacto</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================================================================ -->
+    <!-- CONTACTO                                                         -->
+    <!-- ================================================================ -->
+    <section class="contacto">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">📩 <span>Contacto</span></h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">¿Necesitas información? Escríbenos y te atenderemos a la brevedad.</p>
+            </div>
+            
+            <div class="contacto-wrapper">
+                <form id="contactForm" class="contacto-form">
+                    <div class="form-group">
+                        <label for="nombre">👤 Nombre completo</label>
+                        <input type="text" id="nombre" placeholder="Ej: Juan Pérez" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">📧 Correo electrónico</label>
+                        <input type="email" id="email" placeholder="ejemplo@correo.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">📱 Teléfono</label>
+                        <input type="tel" id="telefono" placeholder="Ej: 944 123 456" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">💬 Mensaje</label>
+                        <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">📨 Enviar Mensaje</button>
+                </form>
+
+                <div class="contacto-info">
+                    <h3>📌 Información</h3>
+                    <div class="info-item">
+                        <span class="info-icon">📍</span>
+                        <span>Av. Húsares de Junín N.º 690, Trujillo</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📞</span>
+                        <span>(044) 123-4567</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📱</span>
+                        <span>999 888 777</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">✉️</span>
+                        <span>rrhh@clinicasanpablo.pe</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🕘</span>
+                        <span>Lun - Vie: 8:00 am - 6:00 pm</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🕘</span>
+                        <span>Sáb: 9:00 am - 1:00 pm</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="mensajeConfirmacion" class="mensaje-confirmacion"></div>
+
+            <!-- ===== MAPA (placeholder) ===== -->
+            <div class="mapa-placeholder">
+                <span class="mapa-icon">🗺️</span>
+                <h3>📍 Encuéntranos</h3>
+                <p>Av. Húsares de Junín N.º 690 - Urb. La Merced, Trujillo</p>
+                <p style="margin-top:8px; font-size:0.9rem; color:var(--gray-dark);">
+                    (Aquí iría el mapa de Google Maps)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- FOOTER                                                           -->
+    <!-- ================================================================ -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="140" height="46">
+                    <rect width="300" height="100" rx="12" fill="#0A3A5A"/>
+                    <rect x="15" y="25" width="50" height="50" rx="8" fill="#2E8B57"/>
+                    <rect x="30" y="35" width="20" height="30" rx="3" fill="white"/>
+                    <rect x="25" y="40" width="30" height="20" rx="3" fill="white"/>
+                    <text x="80" y="45" fill="white" font-family="Arial" font-size="28" font-weight="bold">San Pablo</text>
+                    <text x="80" y="68" fill="#2E8B57" font-family="Arial" font-size="16" font-weight="bold">Clínica</text>
+                    <text x="80" y="88" fill="rgba(255,255,255,0.6)" font-family="Arial" font-size="11">SISTEMA DE RECURSOS HUMANOS</text>
+                </svg>
+                <p>Excelencia médica con calidez humana. Comprometidos con tu salud.</p>
+            </div>
+            <div class="footer-links">
+                <h4>🔗 Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="./index.html">Inicio</a></li>
+                    <li><a href="./empleados.html">Empleados</a></li>
+                    <li><a href="./asistencia.html">Asistencia</a></li>
+                    <li><a href="./nomina.html">Nómina</a></li>
+                    <li><a href="./contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>🌐 Síguenos</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Instagram">📸</a>
+                    <a href="#" aria-label="LinkedIn">💼</a>
+                    <a href="#" aria-label="YouTube">▶️</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Clínica San Pablo - Sistema de Recursos Humanos. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- ================================================================ -->
+    <!-- JAVASCRIPT                                                       -->
+    <!-- ================================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // MENÚ HAMBURGUESA
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+
+            // FORMULARIO DE CONTACTO
+            const contactForm = document.getElementById('contactForm');
+            const mensajeConfirmacion = document.getElementById('mensajeConfirmacion');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const nombre = document.getElementById('nombre').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const mensaje = document.getElementById('mensaje').value.trim();
+
+                    if (!nombre || !email || !mensaje) {
+                        mensajeConfirmacion.textContent = '⚠️ Por favor, completa todos los campos obligatorios.';
+                        mensajeConfirmacion.style.background = '#FEE2E2';
+                        mensajeConfirmacion.style.color = '#DC2626';
+                        return;
+                    }
+
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        mensajeConfirmacion.textContent = '⚠️ Ingresa un correo electrónico válido.';
+                        mensajeConfirmacion.style.background = '#FEE2E2';
+                        mensajeConfirmacion.style.color = '#DC2626';
+                        return;
+                    }
+
+                    mensajeConfirmacion.textContent = `✅ ¡Gracias ${nombre}! Tu mensaje ha sido enviado exitosamente.`;
+                    mensajeConfirmacion.style.background = '#E6F7E6';
+                    mensajeConfirmacion.style.color = '#2E8B57';
+                    contactForm.reset();
+
+                    setTimeout(() => {
+                        mensajeConfirmacion.textContent = '';
+                        mensajeConfirmacion.style.background = 'transparent';
+                        mensajeConfirmacion.style.color = '';
+                    }, 6000);
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
